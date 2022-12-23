@@ -6,7 +6,6 @@ from sys import exit
 from os import system, remove
 
 from PIL import Image
-from pytesseract import pytesseract
 
 URL = "https://www.freeopenvpn.org/"
 
@@ -24,13 +23,11 @@ soup = BeautifulSoup(r.text, 'html.parser')
 
 buttons = soup.find_all('a')
 
-dico = {b: b.get('href') for b in buttons}
-
 out = []
 
-for b, h in dico.items():
-    if "premium.php?cntid=" in h:
-        out.append(URL + h)
+for b in buttons:
+    if "premium.php?cntid=" in b.get('href'):
+        out.append(URL + b.get('href'))
 
 print()
 print("Please chose your country :")
