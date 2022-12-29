@@ -10,7 +10,7 @@ Here is a simple python script to automate the connection to freeopenvpn.org.
 
 Simply run `./install_requirements.sh` to install... requirements :eyes:. (Please note that this script only works with apt-get. sorry fedora, ubuntu > )
 
-After all requirements installed, launch the script with `./connect_to_vpn.py` and follow the instructions.
+After all requirements installed, launch the script with `./freeopenvpn_org.py` and follow the instructions.
 
 ---
 
