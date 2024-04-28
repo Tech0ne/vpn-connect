@@ -8,9 +8,9 @@ Here is a simple python script to automate the connection to freeopenvpn.org.
 
 ## How to use ?
 
-Simply run `./install_requirements.sh` to install... requirements :eyes:. (Please note that this script only works with apt-get. sorry fedora, ubuntu > )
+Simply run `ppip3 install -r requirements.txt` to install... requirements :eyes:.
 
-After all requirements installed, launch the script with `./freeopenvpn_org.py` and follow the instructions.
+After all requirements installed, launch the script with `./main.py` and follow the instructions.
 
 ---
 
@@ -18,6 +18,7 @@ After all requirements installed, launch the script with `./freeopenvpn_org.py` 
 
 - [x] Forget about this project as I did it in 2 hours without real goal
 - [ ] Find it back like 2 or 3 month later and think about what I will do with that ugly script
+- [x] Actually that is exactly what happend so I remade it from scratch
 
 ---
 
@@ -25,7 +26,7 @@ After all requirements installed, launch the script with `./freeopenvpn_org.py` 
 
 - Is that legal ?
 
-`IDK, if freeopenvpn want me to remove my repo, I'll do it, but for now it is.`
+`IDK, but I don't think it is illegal`
 
 - Why is that a fat ugly script ?
 
@@ -34,3 +35,4 @@ After all requirements installed, launch the script with `./freeopenvpn_org.py` 
 - Is there any guarantee that the script works ?
 
 `lol`
+
