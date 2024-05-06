@@ -10,10 +10,8 @@ from queue import Queue, Empty
 from base64 import b64decode
 from requests import get
 
-import subprocess
 import tempfile
 import getch
-import shlex
 
 import time
 import json
@@ -21,8 +19,6 @@ import sys
 import os
 
 MAX_CACHE_TIME = 2 * 24 * 60 * 60
-
-PROCESS = None
 
 console = Console()
 
@@ -147,13 +143,8 @@ def make_nice_format(obj: list[dict], keys: list[str]) -> list[str]:
     return output
 
 def run_command(command):
-    global PROCESS
-    info("Starting openvpn command...")
-    scommand = shlex.split(command)
-    PROCESS = subprocess.Popen(scommand, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
     info("Your connection should be up withing seconds.\nStop the VPN using Ctrl+C")
-    while PROCESS.poll() is None:
-        time.sleep(3)
+    os.system(command)
 
 def main(args: list[str]) -> int:
     if os.geteuid() != 0:
@@ -171,7 +162,6 @@ def main(args: list[str]) -> int:
     choices = sorted(choices, key=lambda e: int(e.get("Score")), reverse=True)
     target = ask_keys("Please chose your VPN :", make_nice_format(choices, ["IP", "HostName", "Operator"]))
     target = list(filter(lambda e: e.get("IP") == target.split(' ')[0], choices))[0]
-    print(target)
     info("Connecting to " + target.get("IP") + "...")
     tmp_file = tempfile.NamedTemporaryFile(mode="w+", delete=False)
     tmp_file.write(target.get("OpenVPN_ConfigData"))
@@ -180,11 +170,11 @@ def main(args: list[str]) -> int:
     try:
         run_command("openvpn --config " + file_name)
     except KeyboardInterrupt:
-        if PROCESS is not None:
-            PROCESS.kill()
         print()
         info("Connection closed successfully !")
         return 0
+    info("Connection closed successfully")
+    return 0
 
 if __name__ == "__main__":
     sys.exit(main(sys.argv))
