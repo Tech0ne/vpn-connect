@@ -168,7 +168,7 @@ def main(args: list[str]) -> int:
     file_name = tmp_file.name
     tmp_file.close()
     try:
-        run_command("openvpn --config " + file_name)
+        run_command("openvpn --data-ciphers AES-128-CBC --config " + file_name)
     except KeyboardInterrupt:
         print()
         info("Connection closed successfully !")
