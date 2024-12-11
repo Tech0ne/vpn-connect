@@ -1,4 +1,4 @@
-#!./.venv/bin/python3
+#!/usr/bin/python3
 
 from rich import print
 from rich.panel import Panel
